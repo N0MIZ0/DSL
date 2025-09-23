@@ -1,41 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-// Node structure
 struct Node {
     int data;
     struct Node *next;
 };
-
-// Global pointers
 struct Node *first = NULL;
 struct Node *last = NULL;
-
-// Function to insert at the end
 void insertEnd(int value) {
     struct Node *newNode = (struct Node*)malloc(sizeof(struct Node));
     newNode->data = value;
     if (first == NULL) {
-        // First node
         first = newNode;
         last = newNode;
-        newNode->next = first;  // Circular link
+        newNode->next = first;  
     } else {
         last->next = newNode;
         last = newNode;
-        last->next = first;  // Maintain circular link
+        last->next = first; 
     }
     printf("Inserted %d at the end.\n", value);
 }
 
-// Function to delete from the beginning
 void deleteBegin() {
     if (first == NULL) {
         printf("List is empty. Cannot delete.\n");
         return;
     }
     struct Node *temp = first;
-    if (first == last) {  // Only one node
+    if (first == last) { 
         first = NULL;
         last = NULL;
     } else {
@@ -46,14 +39,13 @@ void deleteBegin() {
     free(temp);
 }
 
-// Function to delete from the end
 void deleteEnd() {
     if (first == NULL) {
         printf("List is empty. Cannot delete.\n");
         return;
     }
     struct Node *temp = last;
-    if (first == last) {  // Only one node
+    if (first == last) { 
         first = NULL;
         last = NULL;
     } else {
@@ -68,7 +60,6 @@ void deleteEnd() {
     free(temp);
 }
 
-// Function to display the list
 void display() {
     if (first == NULL) {
         printf("List is empty.\n");
@@ -83,7 +74,6 @@ void display() {
     printf("\n");
 }
 
-// Main function with menu
 int main() {
     int choice, value;
     while (1) {
